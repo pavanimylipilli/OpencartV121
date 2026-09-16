@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Bind to grammar/schema...
+-->
+
+<Configuration status="WARN">
+
+    <Properties>
+        <Property name="basePath">./logs</Property>
+    </Properties>
+
+    <Appenders>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingFile name="File"
+                     fileName="${basePath}/automation.log"
+                     filePattern="${basePath}/automation-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <SizeBasedTriggeringPolicy size="5000" />
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <Root level="off"> <!-- if we make it as off then it will not generate log files or debug type to enable -->  
+            <!-- Here you can use multiple log levels All < Trace < Debug < Info < Warn < Error < Fatal < Off -->
+            <!-- <AppenderRef ref="Console"/> -->
+            <AppenderRef ref="File"/>  <!-- if your data should be execute in console window then we can enable console -->
+        </Root>
+
+    </Loggers>
+
+</Configuration>
